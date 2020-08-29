@@ -26,9 +26,8 @@
         <div class = "row border">
             <div id = "projects-div" class = 'col-md-4 border-right list-container'>
                 <h2> Projects</h2>
-                <div id="projects-container" class="text-center">
-                    <br>
-                    <br>
+                <div id="projects-container" class="text-center pb-2">
+                    <button class = "btn btn-outline-info btn-block pb-1"> Project 1</button>
                 </div>
                 <button type="button" class= "btn btn-info btn-block" data-toggle="modal" data-target="#newProjectModal"> New </button>
             </div>
@@ -58,13 +57,13 @@
         <div class="modal-body">
             <div class="form-group">
                 <label for="exampleInputEmail1">Project Name: </label>
-                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter project name">
+                <input type="text" class="form-control" id="project-title-input" placeholder="Enter project name">
                 <small id="emailHelp" class="form-text text-muted">You can change this name later on.</small>
               </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-info">Add</button>
+          <button id="add-project-but" type="button" class="btn btn-info" data-dismiss="modal">Add</button>
         </div>
       </div>
     </div>

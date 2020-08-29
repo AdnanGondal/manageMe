@@ -1,3 +1,4 @@
-console.log("Hello World");
+import {controller} from "./logic/controller";
+import {DOMcontroller} from "./dom/domController"
 
-//for  now- creating the Model:
+DOMcontroller.render();
