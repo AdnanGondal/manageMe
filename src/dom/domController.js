@@ -6,31 +6,32 @@ const DOMcontroller = (()=>{
     let addProjectButton = document.querySelector("#add-project-but");
     let projectTitle = document.querySelector("#project-title-input");
     let projectsDiv = document.querySelector("#projects-container");
+    let deleteButs;
 
    
     const projectDisplay=()=>{
 
-
         //console.log(localStorage.removeItem('projects'));
-
-        console.log(JSON.parse(localStorage.getItem('projects')));
-        
-        console.log(controller.getProjects())
+        //console.log(JSON.parse(localStorage.getItem('projects')));
+        console.log(controller.getProjects());
 
         let projects = controller.getProjects();
         
-        
-        projects.forEach((project)=>{
-            //console.log({project});
-            Object.assign(project,projectMethods);
-            createProjectButton(project.getTitle());
-
+        projects.forEach((project,index)=>{
+            
+            //console.log(controller.isStored())
+            if (controller.isStored()) {
+                Object.assign(project,projectMethods);
+            }
+            console.log({project});
+            createProjectButton(project.getTitle(),index);
         });
 
 
     }
 
-    const createProjectButton = (title)=>{
+    const createProjectButton = (title,index)=>{
+        console.log(index);
         let buttonRow = document.createElement("div");
         buttonRow.classList.add("row", "pb-1");
 
@@ -46,8 +47,15 @@ const DOMcontroller = (()=>{
         button.classList.add("btn","btn-outline-info","btn-block");
 
         let delButton = document.createElement('button');
-        delButton.textContent = "Delete"
-        delButton.classList.add("btn","btn-outline-danger","btn-block")
+        delButton.textContent = "Delete";
+        delButton.classList.add("btn","btn-outline-danger","btn-block","deleteButs");
+
+        delButton.addEventListener('click',()=>{
+            console.log("Hello");
+            projectsDiv.removeChild(buttonRow);
+            
+            controller.removeProject(index);
+        });
 
         projectButtonCol.appendChild(button);
         deleteButCol.appendChild(delButton);
@@ -63,15 +71,36 @@ const DOMcontroller = (()=>{
     const addProject=()=>{
         if (projectTitle.value){
             controller.addProject(projectTitle.value);
-            createProjectButton(projectTitle.value);
+            createProjectButton(projectTitle.value,controller.getProjectsArray().length-1);
             projectTitle.value = "";
             console.log(JSON.parse(localStorage.getItem('projects')));
+
+
         } else {
             alert("warning")
         }
         
          
     }
+
+    const deleteProject=()=>{
+        /*
+        deleteButs = document.querySelectorAll(".deleteButs");
+        console.log(deleteButs);
+
+        deleteButs.forEach((button,index)=>{
+
+            button.addEventListener('click',(e)=>{
+                console.log(index);
+                controller.removeProject(index);
+                //projectDisplay();
+                e.stopPropagation();
+                
+            });
+        });*/
+    }
+
+
 
     const render = ()=>{
 
@@ -82,6 +111,8 @@ const DOMcontroller = (()=>{
         addProjectButton.addEventListener('click',()=>{
             addProject();
         });
+
+        deleteProject();
     }
 
 

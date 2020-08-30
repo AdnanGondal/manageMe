@@ -21,6 +21,7 @@ const taskFactory = (title,description,priority,deadline)=>{
 const projectFactory = (title)=>{
 
     let tasks = [];
+  
 
     const setTitle = (title)=>{this.title = title};
     const getTitle = ()=> title;
@@ -30,7 +31,7 @@ const projectFactory = (title)=>{
     };
 
     const getTasks = ()=> this.tasks;
-    return {addTask,setTitle,getTasks,getTitle,title}
+    return {title,addTask,setTitle,getTasks,getTitle}
 }
 
 let projectMethods = {

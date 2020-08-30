@@ -1,10 +1,10 @@
-import {taskFactory,projectFactory} from "./create.js"
+import {taskFactory,projectFactory,projectMethods} from "./create.js"
 import {storage} from "../storage/localStorage"
 
 const controller = (()=>{
    
-    let defaultProject = projectFactory("Daily")
-    let projects = [defaultProject]
+    let defaultProject = projectFactory("Daily");
+    let projects = [defaultProject];
     
 
     const addProject = (title)=>{
@@ -12,7 +12,6 @@ const controller = (()=>{
         projects = storage.getProjects();
         let project = projectFactory(title);
         projects.push(project);
-
         storage.storeProjects();
 
     }
@@ -22,12 +21,22 @@ const controller = (()=>{
         return projects;
     }
 
+    const removeProject = (index)=>{
+        projects = storage.getProjects();
+        projects.splice(index,1);
+        console.log(projects);   
+        storage.storeProjects();
+    }
+
+    const isStored = ()=>{
+        return storage.getStored();
+    }
    
-    const getProjects = ()=>{
+    const getProjects = ()=>{  
         return storage.getProjects();
     }
 
-    return{addProject,getProjectsArray,getProjects}
+    return{addProject,getProjectsArray,getProjects,removeProject,isStored}
 
 })();
 

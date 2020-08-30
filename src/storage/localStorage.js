@@ -12,8 +12,10 @@ const storage = (()=>{
         else return JSON.parse(localStorage.getItem('projects'));
     };
 
+    let getStored = ()=> localStorage.getItem('projects') ? true : false;
+
     return {
-        storeProjects,getProjects
+        storeProjects,getProjects,getStored
     }
 
 })();
