@@ -20,13 +20,14 @@ const DOMcontroller = (()=>{
 
         //console.log(localStorage.removeItem('projects'));
         console.log(JSON.parse(localStorage.getItem('projects')));
-        //console.log(controller.getProjectsArray())
+        
+        console.log(controller.getProjects())
 
         let projects = controller.getProjects();
         
         
         projects.forEach((project)=>{
-            console.log({project});
+            //console.log({project});
             Object.assign(project,projectMethods);
             createProjectButton(project.getTitle());
 
@@ -40,6 +41,7 @@ const DOMcontroller = (()=>{
             controller.addProject(projectTitle.value);
             createProjectButton(projectTitle.value);
             projectTitle.value = "";
+            console.log(JSON.parse(localStorage.getItem('projects')));
         } else {
             alert("warning")
         }

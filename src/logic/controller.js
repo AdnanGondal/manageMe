@@ -8,9 +8,11 @@ const controller = (()=>{
     
 
     const addProject = (title)=>{
-        
+
+        projects = storage.getProjects();
         let project = projectFactory(title);
         projects.push(project);
+
         storage.storeProjects();
 
     }
