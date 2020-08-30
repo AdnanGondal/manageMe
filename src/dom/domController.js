@@ -1,5 +1,5 @@
 import {controller} from "../logic/controller";
-import {taskFactory,projectFactory} from "../logic/create"
+import {taskFactory,projectFactory,projectMethods} from "../logic/create"
 
 const DOMcontroller = (()=>{
     
@@ -17,10 +17,19 @@ const DOMcontroller = (()=>{
 
     const projectDisplay=()=>{
 
-        let projects = controller.getProjects();
 
+        //console.log(localStorage.removeItem('projects'));
+        console.log(JSON.parse(localStorage.getItem('projects')));
+        //console.log(controller.getProjectsArray())
+
+        let projects = controller.getProjects();
+        
+        
         projects.forEach((project)=>{
+            console.log({project});
+            Object.assign(project,projectMethods);
             createProjectButton(project.getTitle());
+
         });
 
 
@@ -42,7 +51,6 @@ const DOMcontroller = (()=>{
 
         projectDisplay();
         //Button event listeners:
-
 
         addProjectButton.addEventListener('click',()=>{
             addProject();

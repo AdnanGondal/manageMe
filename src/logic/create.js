@@ -30,12 +30,19 @@ const projectFactory = (title)=>{
     };
 
     const getTasks = ()=> this.tasks;
-
-
-    return {addTask,setTitle,getTasks,getTitle}
+    return {addTask,setTitle,getTasks,getTitle,title}
 }
+
+let projectMethods = {
+    getTitle() {
+        return this.title;
+    } 
+}
+
+
 
 export {
     taskFactory,
     projectFactory,
+    projectMethods,
         }
