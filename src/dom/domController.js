@@ -11,12 +11,15 @@ const DOMcontroller = (()=>{
    
     const projectDisplay=()=>{
 
+        //get current stored projects and displays them....
+        // also indexes correctly to allow deletion
+
         //console.log(localStorage.removeItem('projects'));
         //console.log(JSON.parse(localStorage.getItem('projects')));
-        console.log(controller.getProjects());
+        projectsDiv.innerHTML = '';
 
+        console.log(controller.getProjects());
         let projects = controller.getProjects();
-        
         projects.forEach((project,index)=>{
             
             //console.log(controller.isStored())
@@ -53,8 +56,8 @@ const DOMcontroller = (()=>{
         delButton.addEventListener('click',()=>{
             console.log("Hello");
             projectsDiv.removeChild(buttonRow);
-            
             controller.removeProject(index);
+            projectDisplay();
         });
 
         projectButtonCol.appendChild(button);
@@ -71,7 +74,8 @@ const DOMcontroller = (()=>{
     const addProject=()=>{
         if (projectTitle.value){
             controller.addProject(projectTitle.value);
-            createProjectButton(projectTitle.value,controller.getProjectsArray().length-1);
+            //createProjectButton(projectTitle.value,controller.getProjects().length-1);
+            projectDisplay();
             projectTitle.value = "";
             console.log(JSON.parse(localStorage.getItem('projects')));
 
