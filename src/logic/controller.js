@@ -5,6 +5,7 @@ const controller = (()=>{
    
     let defaultProject = projectFactory("Daily");
     let projects = [defaultProject];
+    let currentProject = false;
     
 
     const addProject = (title)=>{
@@ -36,7 +37,14 @@ const controller = (()=>{
         return storage.getProjects();
     }
 
-    return{addProject,getProjectsArray,getProjects,removeProject,isStored}
+    const changeCurrentProject = (index)=>{
+        projects = storage.getProjects();
+        currentProject = projects[index];
+    }
+
+    const getCurrentProject = ()=> currentProject;
+
+    return{addProject,getProjectsArray,getProjects,removeProject,isStored,changeCurrentProject,getCurrentProject}
 
 })();
 

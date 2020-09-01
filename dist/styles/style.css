@@ -15,6 +15,10 @@ h1{
     -moz-text-fill-color: transparent;
 }
 
+h1:hover{
+    transform: scale(1.03);
+}
+
 h2{
     color: rgb(77, 146, 168);
     text-decoration: underline;

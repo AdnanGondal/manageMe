@@ -8,14 +8,23 @@ const DOMcontroller = (()=>{
     let projectsDiv = document.querySelector("#projects-container");
     let deleteButs;
 
+    const render = ()=>{
+
+        projectDisplay();
+
+        //Button event listeners:
+
+        addProjectButton.addEventListener('click',()=>{
+            addProject();
+        });
+
+    }
    
     const projectDisplay=()=>{
 
         //get current stored projects and displays them....
-        // also indexes correctly to allow deletion
+        // is called everytime a new project is added, removed, page refresh.
 
-        //console.log(localStorage.removeItem('projects'));
-        //console.log(JSON.parse(localStorage.getItem('projects')));
         projectsDiv.innerHTML = '';
 
         console.log(controller.getProjects());
@@ -26,7 +35,7 @@ const DOMcontroller = (()=>{
             if (controller.isStored()) {
                 Object.assign(project,projectMethods);
             }
-            console.log({project});
+            //console.log({project});
             createProjectButton(project.getTitle(),index);
         });
 
@@ -44,17 +53,33 @@ const DOMcontroller = (()=>{
         let deleteButCol = document.createElement("div");
         deleteButCol.classList.add("col-4","pl-1");
 
-
         let button = document.createElement('button');
         button.textContent = title;
-        button.classList.add("btn","btn-outline-info","btn-block");
+        button.classList.add("btn","btn-outline-info","btn-block","notCurrent");
+        
+        button.addEventListener('click',()=>{
+
+            button.classList.remove("notCurrent");
+            let otherButtons = document.querySelectorAll(".notCurrent");
+            
+            otherButtons.forEach((but)=>{
+                but.classList.remove("btn-info","current");
+                but.classList.add("btn-outline-info");
+            });
+
+            controller.changeCurrentProject(index);
+            console.log(controller.getCurrentProject());
+
+            button.classList.remove("btn-outline-info");
+            button.classList.add("btn-info","notCurrent")
+        });
 
         let delButton = document.createElement('button');
         delButton.textContent = "Delete";
         delButton.classList.add("btn","btn-outline-danger","btn-block","deleteButs");
 
         delButton.addEventListener('click',()=>{
-            console.log("Hello");
+            //console.log("Hello");
             projectsDiv.removeChild(buttonRow);
             controller.removeProject(index);
             projectDisplay();
@@ -74,11 +99,8 @@ const DOMcontroller = (()=>{
     const addProject=()=>{
         if (projectTitle.value){
             controller.addProject(projectTitle.value);
-            //createProjectButton(projectTitle.value,controller.getProjects().length-1);
             projectDisplay();
             projectTitle.value = "";
-            console.log(JSON.parse(localStorage.getItem('projects')));
-
 
         } else {
             alert("warning")
@@ -87,37 +109,8 @@ const DOMcontroller = (()=>{
          
     }
 
-    const deleteProject=()=>{
-        /*
-        deleteButs = document.querySelectorAll(".deleteButs");
-        console.log(deleteButs);
-
-        deleteButs.forEach((button,index)=>{
-
-            button.addEventListener('click',(e)=>{
-                console.log(index);
-                controller.removeProject(index);
-                //projectDisplay();
-                e.stopPropagation();
-                
-            });
-        });*/
-    }
 
 
-
-    const render = ()=>{
-
-        projectDisplay();
-
-        //Button event listeners:
-
-        addProjectButton.addEventListener('click',()=>{
-            addProject();
-        });
-
-        deleteProject();
-    }
 
 
     return {
