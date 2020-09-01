@@ -45,8 +45,11 @@ const projectFactory = (title)=>{
         this.tasks.push(task);
     };
 
+    const removeTask = (index)=>{
+        this.tasks.splice(index,1)
+    }
     const getTasks = ()=> this.tasks;
-    return {title,tasks,addTask,setTitle,getTasks,getTitle}
+    return {title,tasks,addTask,setTitle,getTasks,getTitle,removeTask}
 }
 
 let projectMethods = {
@@ -58,6 +61,9 @@ let projectMethods = {
     },
     addTask(task){
         this.tasks.push(task);
+    },
+    removeTask(index){
+        this.tasks.splice(index,1)
     }
 }
 

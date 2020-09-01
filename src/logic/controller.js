@@ -61,9 +61,14 @@ const controller = (()=>{
         
     }
 
+    const deleteTask = (indexp,indext)=>{
+        projects[indexp].removeTask(indext);
+        storage.storeProjects();
+    }
+
     return{addProject,getProjectsArray,getProjects,removeProject,isStored,
         changeCurrentProject,getCurrentProject,resetCurrentProject,getCurrentProjectindex,
-        addTask
+        addTask,deleteTask,
     
     }
 

@@ -63,8 +63,9 @@ const DOMcontroller = (()=>{
         let tasks = controller.getCurrentProject().getTasks();
 
         tasksDiv.innerHTML = '';
-
+        let indexT = 0;
         tasks.forEach((task)=>{
+            let taskIndex = indexT;
             Object.assign(task,taskMethods);
             console.log(task.getTitle());
 
@@ -86,6 +87,11 @@ const DOMcontroller = (()=>{
             deleteBut.textContent = "Delete";
             buttonCol.appendChild(deleteBut);
 
+            deleteBut.addEventListener('click',()=>{
+                controller.deleteTask(controller.getCurrentProjectindex(),taskIndex)
+                showTasks();
+            });
+
             let title = document.createElement('h6');
             title.textContent = `${task.getTitle()}`;
             title.classList.add("m-0");
@@ -96,7 +102,7 @@ const DOMcontroller = (()=>{
             taskContainer.appendChild(row1);
 
             tasksDiv.appendChild(taskContainer);
-
+            indexT ++;
         });
     
 
