@@ -19,6 +19,21 @@ const taskFactory = (title,description,priority,deadline)=>{
 
 }
 
+let taskMethods = {
+    getTitle() {
+        return this.title;
+    },
+    getDescription() {
+        return this.description;
+    },
+    getPriority() {
+        return this.priority;
+    },
+    getDeadline() {
+        return this.deadline;
+    }
+}
+
 const projectFactory = (title)=>{
 
     let tasks = [];
@@ -52,4 +67,5 @@ export {
     taskFactory,
     projectFactory,
     projectMethods,
+    taskMethods
         }
