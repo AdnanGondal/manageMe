@@ -12,6 +12,7 @@ const taskFactory = (title,description,priority,deadline)=>{
     const setDeadline = (deadline)=>{this.deadline = deadline}
 
     return{
+        title,description,priority,deadline,
         getTitle,getDescription,getPriority,getDeadline,
         setTitle,setDescription,setPriority,setDeadline
     }
@@ -22,22 +23,27 @@ const projectFactory = (title)=>{
 
     let tasks = [];
   
-
     const setTitle = (title)=>{this.title = title};
     const getTitle = ()=> title;
 
-    const addTask = (todo)=>{
-        this.toDos.push(todo);
+    const addTask = (task)=>{
+        this.tasks.push(task);
     };
 
     const getTasks = ()=> this.tasks;
-    return {title,addTask,setTitle,getTasks,getTitle}
+    return {title,tasks,addTask,setTitle,getTasks,getTitle}
 }
 
 let projectMethods = {
     getTitle() {
         return this.title;
-    } 
+    } ,
+    getTasks() {
+        return this.tasks;
+    },
+    addTask(task){
+        this.tasks.push(task);
+    }
 }
 
 

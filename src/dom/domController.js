@@ -8,6 +8,14 @@ const DOMcontroller = (()=>{
     let projectsDiv = document.querySelector("#projects-container");
     let deleteButs;
 
+    let addTaskButton = document.querySelector("#add-task-but");
+    let taskTitle = document.querySelector("#new-task-title");
+    let taskDescription = document.querySelector("#task-description-text");
+    let taskPriority = document.querySelector("#task-priority-select");
+    let taskDeadLine = document.querySelector("#task-deadline")
+
+
+
     const render = ()=>{
 
         projectDisplay();
@@ -18,7 +26,48 @@ const DOMcontroller = (()=>{
             addProject();
         });
 
+        addTaskButton.addEventListener('click',()=>{
+            //console.log(controller.getCurrentProject());
+            addTask();
+        });
+
     }
+
+    const addTask=()=>{
+        if (!controller.getCurrentProject()) {
+            alert ("Warning: Select a project");
+            return;
+        }
+       
+
+        if (!taskTitle.value){
+            alert("Warning: Enter task title.");
+            return;
+        }
+        if (!taskDeadLine.value){
+            alert("Warning: Select Deadline.");
+            return;
+        }
+
+        controller.addTask(controller.getCurrentProjectindex(),taskTitle.value,taskDescription.value,taskPriority.value,taskDeadLine.value);
+        taskTitle.value = '';
+        taskDescription.value = '';
+
+    }
+
+    const addProject=()=>{
+        if (projectTitle.value){
+            controller.addProject(projectTitle.value);
+            projectDisplay();
+            projectTitle.value = "";
+
+        } else {
+            alert("Warning: Enter project title.")
+        }
+        
+         
+    }
+
    
     const projectDisplay=()=>{
 
@@ -67,11 +116,11 @@ const DOMcontroller = (()=>{
                 but.classList.add("btn-outline-info");
             });
 
+            button.classList.remove("btn-outline-info");
+            button.classList.add("btn-info","notCurrent");
+
             controller.changeCurrentProject(index);
             console.log(controller.getCurrentProject());
-
-            button.classList.remove("btn-outline-info");
-            button.classList.add("btn-info","notCurrent")
         });
 
         let delButton = document.createElement('button');
@@ -83,6 +132,7 @@ const DOMcontroller = (()=>{
             projectsDiv.removeChild(buttonRow);
             controller.removeProject(index);
             projectDisplay();
+            controller.resetCurrentProject(index);
         });
 
         projectButtonCol.appendChild(button);
@@ -95,19 +145,6 @@ const DOMcontroller = (()=>{
 
     }
 
-
-    const addProject=()=>{
-        if (projectTitle.value){
-            controller.addProject(projectTitle.value);
-            projectDisplay();
-            projectTitle.value = "";
-
-        } else {
-            alert("warning")
-        }
-        
-         
-    }
 
 
 

@@ -6,6 +6,7 @@ const controller = (()=>{
     let defaultProject = projectFactory("Daily");
     let projects = [defaultProject];
     let currentProject = false;
+    let projectIndex = null;
     
 
     const addProject = (title)=>{
@@ -40,11 +41,31 @@ const controller = (()=>{
     const changeCurrentProject = (index)=>{
         projects = storage.getProjects();
         currentProject = projects[index];
+        projectIndex = index;
     }
 
     const getCurrentProject = ()=> currentProject;
+    const getCurrentProjectindex = ()=> projectIndex;
 
-    return{addProject,getProjectsArray,getProjects,removeProject,isStored,changeCurrentProject,getCurrentProject}
+    const resetCurrentProject = ()=>{
+        currentProject = false;
+        projectIndex = null;
+    }
+
+    const addTask = (index,title,description,priority,deadline)=>{
+        let task = taskFactory(title,description,priority,deadline);
+        Object.assign(projects[index],projectMethods);
+        projects[index].addTask(task);
+        console.log(projects[index]);
+        storage.storeProjects();
+        
+    }
+
+    return{addProject,getProjectsArray,getProjects,removeProject,isStored,
+        changeCurrentProject,getCurrentProject,resetCurrentProject,getCurrentProjectindex,
+        addTask
+    
+    }
 
 })();
 
