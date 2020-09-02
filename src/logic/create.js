@@ -31,7 +31,20 @@ let taskMethods = {
     },
     getDeadline() {
         return this.deadline;
-    }
+    },
+    setTitle(title) {
+        this.title = title;
+    },
+    setDescription(description){
+        this.description = description;
+    },
+    setPriority(priority){
+        this.priority = priority;
+    },
+    setDeadline(deadline){
+        this.deadline = deadline;
+    },
+
 }
 
 const projectFactory = (title)=>{

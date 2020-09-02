@@ -72,10 +72,20 @@ const controller = (()=>{
         projects[indexp].removeTask(indext);
         storage.storeProjects();
     }
+    
+    const editTask = (indexp,indext,title,description,priority,deadline)=>{
+        let task = projects[indexp].getTasks()[indext];
+        task.setTitle(title);
+        task.setDescription(description);
+        task.setPriority(priority);
+        task.setDeadline(deadline);
+
+        storage.storeProjects();
+    }
 
     return{addProject,getProjectsArray,getProjects,removeProject,editProject,isStored,
         changeCurrentProject,getCurrentProject,resetCurrentProject,getCurrentProjectindex,
-        addTask,deleteTask,
+        addTask,deleteTask,editTask,
     
     }
 

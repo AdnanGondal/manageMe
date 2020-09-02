@@ -1,5 +1,7 @@
 import {controller} from "../logic/controller";
 import {taskFactory,projectFactory,projectMethods,taskMethods} from "../logic/create"
+import {format} from 'date-fns';
+import parseISO from 'date-fns/parseISO'
 
 const DOMcontroller = (()=>{
     
@@ -102,13 +104,11 @@ const DOMcontroller = (()=>{
             priority.classList.add("m-0")
 
             let deadline = document.createElement('p');
-            deadline.textContent = `Due: ${task.getDeadline()}`
+            deadline.textContent = `Due: ${format(parseISO(task.getDeadline()),'dd/MM/yyyy')}`
             deadline.classList.add("m-0");
             let description = document.createElement('p');
             description.textContent = task.getDescription();
 
-            
-            
             taskCol.appendChild(title);
             
             taskCol.appendChild(deadline);
@@ -124,12 +124,37 @@ const DOMcontroller = (()=>{
             row1.appendChild(buttonCol)
             taskContainer.appendChild(row1);
 
+            taskContainer.addEventListener("dblclick",()=>{
+                editTask(task,controller.getCurrentProjectindex(),taskIndex);
+            });
+
             tasksDiv.appendChild(taskContainer);
+
             
             indexT ++;
         });
     
 
+    }
+
+    const editTask=(task,indexp,indext)=>{
+        
+        let title = document.querySelector("#task-title-edit");
+        title.value = task.getTitle();
+        let description = document.querySelector("#task-description-edit");
+        description.value = task.getDescription();
+        let priority = document.querySelector("#task-priority-edit");
+        priority.value = task.getPriority();
+        let deadline = document.querySelector("#task-deadline-edit");
+        deadline.value = task.getDeadline();
+
+        let changeTaskBut = document.querySelector("#edit-task-but");
+        $('#edit-task-Modal').modal("show");
+
+        changeTaskBut.addEventListener('click',()=>{
+            controller.editTask(indexp,indext,title.value,description.value,priority.value,deadline.value);
+            showTasks();
+        });
     }
 
     const addProject=()=>{

@@ -136,6 +136,48 @@
   </div>
 </div>
 
+    <!--Edit Task Modal -->
+    <div class="modal fade" id="edit-task-Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Edit Task</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              <div class="form-group">
+                  <label for="task-title-edit">Task Title: </label>
+                  <input type="text" class="form-control" id="task-title-edit" placeholder="Enter Title">
+              </div>
+              <div class="form-group">
+                  <label for="task-description-edit">Description: </label>
+                  <textarea class="form-control" id="task-description-edit" rows="3"></textarea>
+              </div>
+              <div class="form-group">
+                  <label for="task-priority-edit">Priority: </label>
+                  <select class="form-control" id="task-priority-edit">
+                    <option>Low</option>
+                    <option>Medium</option>
+                    <option>High</option>
+                  </select>
+              </div>
+              <div class="form-group">
+                  <label for="task-deadline-edit">Deadline: </label>
+                  <input type="date" class="form-control" id="task-deadline-edit">
+              </div>
+                
+                
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            <button id="edit-task-but" type="button" class="btn btn-info" data-dismiss="modal">Change</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
    
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
