@@ -201,6 +201,11 @@ const DOMcontroller = (()=>{
             showTasks();
         });
 
+        button.addEventListener("dblclick",()=>{
+            editProjectTitle(title,index);
+            
+        });
+
         let delButton = document.createElement('button');
         delButton.textContent = "Delete";
         delButton.classList.add("btn","btn-outline-danger","btn-block","deleteButs");
@@ -222,6 +227,19 @@ const DOMcontroller = (()=>{
         
         projectsDiv.append(buttonRow);
 
+    }
+
+    const editProjectTitle = (title,index)=>{
+        
+        let newProjectTitle = document.querySelector("#project-title-change");
+        newProjectTitle.value = title;
+        $('#editProjectModal').modal("show");
+        let editProjectBut = document.querySelector("#change-project-but");
+        editProjectBut.addEventListener('click',()=>{
+            controller.editProject(index,newProjectTitle.value);
+            projectDisplay();
+        })
+        
     }
 
 

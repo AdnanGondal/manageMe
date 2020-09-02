@@ -64,6 +64,9 @@ let projectMethods = {
     },
     removeTask(index){
         this.tasks.splice(index,1)
+    },
+    setTitle(title){
+        this.title = title;
     }
 }
 

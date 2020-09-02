@@ -38,6 +38,11 @@ const controller = (()=>{
         return storage.getProjects();
     }
 
+    const editProject = (index,title)=>{
+        projects[index].setTitle(title);
+        storage.storeProjects();
+    }
+
     const changeCurrentProject = (index)=>{
         projects = storage.getProjects();
         currentProject = projects[index];
@@ -51,6 +56,8 @@ const controller = (()=>{
         currentProject = false;
         projectIndex = null;
     }
+
+    
 
     const addTask = (index,title,description,priority,deadline)=>{
         let task = taskFactory(title,description,priority,deadline);
@@ -66,7 +73,7 @@ const controller = (()=>{
         storage.storeProjects();
     }
 
-    return{addProject,getProjectsArray,getProjects,removeProject,isStored,
+    return{addProject,getProjectsArray,getProjects,removeProject,editProject,isStored,
         changeCurrentProject,getCurrentProject,resetCurrentProject,getCurrentProjectindex,
         addTask,deleteTask,
     
