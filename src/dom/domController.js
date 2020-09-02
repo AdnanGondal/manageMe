@@ -153,6 +153,7 @@ const DOMcontroller = (()=>{
 
         changeTaskBut.addEventListener('click',()=>{
             controller.editTask(indexp,indext,title.value,description.value,priority.value,deadline.value);
+            controller.changeCurrentProject(indexp);
             showTasks();
         });
     }

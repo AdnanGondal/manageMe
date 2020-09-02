@@ -1,4 +1,4 @@
-import {taskFactory,projectFactory,projectMethods} from "./create.js"
+import {taskFactory,projectFactory,projectMethods,taskMethods} from "./create.js"
 import {storage} from "../storage/localStorage"
 
 const controller = (()=>{
@@ -69,12 +69,17 @@ const controller = (()=>{
     }
 
     const deleteTask = (indexp,indext)=>{
+        projects = storage.getProjects();
+        Object.assign(projects[indexp],projectMethods);
         projects[indexp].removeTask(indext);
         storage.storeProjects();
     }
     
     const editTask = (indexp,indext,title,description,priority,deadline)=>{
+        projects = storage.getProjects();
+        Object.assign(projects[indexp],projectMethods);
         let task = projects[indexp].getTasks()[indext];
+        Object.assign(task,taskMethods);
         task.setTitle(title);
         task.setDescription(description);
         task.setPriority(priority);
