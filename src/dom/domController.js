@@ -95,13 +95,37 @@ const DOMcontroller = (()=>{
             let title = document.createElement('h6');
             title.textContent = `${task.getTitle()}`;
             title.classList.add("m-0");
+
+            let priority = document.createElement('p');
+            let priorityVal = task.getPriority();
+            priority.textContent = `${priorityVal} priority`;
+            priority.classList.add("m-0")
+
+            let deadline = document.createElement('p');
+            deadline.textContent = `Due: ${task.getDeadline()}`
+            deadline.classList.add("m-0");
+            let description = document.createElement('p');
+            description.textContent = task.getDescription();
+
+            
             
             taskCol.appendChild(title);
+            
+            taskCol.appendChild(deadline);
+            taskContainer.addEventListener('mouseover',(e)=>{
+                taskCol.appendChild(priority);
+                taskCol.appendChild(description);
+            });
+            taskContainer.addEventListener('mouseout',()=>{
+                taskCol.removeChild(priority);
+                taskCol.removeChild(description);
+            });
             row1.appendChild(taskCol);
             row1.appendChild(buttonCol)
             taskContainer.appendChild(row1);
 
             tasksDiv.appendChild(taskContainer);
+            
             indexT ++;
         });
     
@@ -187,6 +211,7 @@ const DOMcontroller = (()=>{
             controller.removeProject(index);
             projectDisplay();
             controller.resetCurrentProject(index);
+            tasksDiv.innerHTML = '';
         });
 
         projectButtonCol.appendChild(button);
@@ -198,10 +223,6 @@ const DOMcontroller = (()=>{
         projectsDiv.append(buttonRow);
 
     }
-
-
-
-
 
 
     return {
