@@ -18,6 +18,9 @@
   },
   "homepage": "https://github.com/AdnanGondal/manageMe#readme",
   "devDependencies": {
+    "eslint": "^7.8.1",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12"
   },
