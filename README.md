@@ -1,13 +1,26 @@
-<h1>Manage Me</h1>
-
-<p> This is a project management web app created via HTML, CSS, Bootstrap and Javascript.</p>
-<p> This project makes use of JavaScript ES6 Modules (Webpack) as well as OOP Principles (SOLID).<br>
-
-In this app the user has the ability to add projects. For each project the user can add tasks that have a title, description, priority level and due date. 
-<br>
-The user can also delete any project or task they do not wish to keep or they have completed.
-<br>
-The user can also modify projects and tasks by double clicking on them. 
+# Manage-Me
+![image](https://user-images.githubusercontent.com/43793942/127045376-44ff25df-910c-4cc5-be1f-36bf5df0fbfb.png)
 
 
- </p>
+## About
+
+Manage-me is a project management app. It gives the user the ability to add projects. For each project, the user can add tasks that have a title, a description, a priority level and a due date. The user can also remove any projects or tasks they do not wish to keep. The user can modify the names of projects and tasks by double clicking them. 
+
+This project makes use of the JavaScript ES6 Modules (Webpack). An attempt to follow the SOLID OOP principles has been made. 
+
+
+## Usage
+
+The site has been deployed to Github Pages and can be accessed via:
+
+https://adnangondal.github.io/manageMe/
+
+## Roadmap
+There are plans to include the Firebase backend, so that users can access their projects on multiple devices via Google Authentication. 
+
+## Project status
+
+Development on this project has been put on pause. 
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
